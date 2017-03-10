@@ -13,14 +13,21 @@
         <title>Laravel</title>
 
         <!-- Fonts -->
-        <link href="css/bootstrap1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-        <script type="text/javascript" src=""></script>
-		<script type="text/javascript" src="js/javascript.js"></script>
+       
 		<script type="text/javascript" src="js/javascript.js"></script>
 
         <!-- Styles -->
 <style>
 	
+	#formrotate{
+		
+		margin-top: -500px;
+		  
+			-webkit-transition: margin-top 2s;
+		 
+					transition: margin-top 2s;
+		
+	}
 #dropbtn {
    	margin: 10px 0px 0px 5px;
 	font-size: 15px;
@@ -49,8 +56,13 @@
     display: block;
 }
 
-	.dropdown-content a:hover{
-	text-decoration: underline;
+	.linksnone:hover{
+	text-decoration:underline;
+		font-size: 20px;
+		
+	-webkit-transition:font-size 0.5s;
+		transition:font-size 0.5s;
+		
 	
 	}
 	
@@ -78,6 +90,7 @@
 	
 	
 	
+	
 </style>
    
    
@@ -85,7 +98,7 @@
     <body> 
     <div class="container">
  
-         <div class="modal-dialog modal-lg ">
+         <div class="modal-dialog modal-lg" id="formrotate">
   
   <!-- Trigger the modal with a button -->
  
@@ -121,11 +134,11 @@
 				<div id="dropdown">
 				<span id="dropbtn" class="glyphicon glyphicon-edit" ></span>
 				<div class="dropdown-content">
-					<a onclick="change_num('number')" id="num" style="cursor: pointer" class="glyphicon glyphicon-sound-5-1" >&nbsp;number</a>
-					<a onclick="change_date('date')" id="dates" style="cursor: pointer" class="glyphicon glyphicon-calendar">&nbsp;date</a>
-					<a onclick="change_time('time')" id="tyme" style="cursor: pointer" class="glyphicon glyphicon-time">&nbsp;time</a>
-					<a onclick="change_area('textarea')" id="area"  style="cursor: pointer" class="glyphicon glyphicon-pencil">&nbsp;textarea</a>
-					<a onclick="change_file('file')" id="file" style="cursor: pointer" class="glyphicon glyphicon-file">&nbsp;file</a>
+					<a onclick="change_num('number')"  style="cursor: pointer" class="glyphicon glyphicon-sound-5-1" >&nbsp;<span class="linksnone" id="linkgone">Number</span></a>
+					<a onclick="change_date('date')" id="dates" style="cursor: pointer" class="glyphicon glyphicon-calendar">&nbsp;<span class="linksnone" id="linkgone_D">Date</span></a>
+						<a onclick="change_time('time')" id="tyme" style="cursor: pointer" class="glyphicon glyphicon-time">&nbsp;<span class="linksnone"  id="linkgone_t">Time</span></a>
+						<a onclick="change_area('textarea')" id="area"  style="cursor: pointer" class="glyphicon glyphicon-pencil">&nbsp;<span class="linksnone" id="linkgone_area">Textarea</span></a>
+						<a onclick="change_file('file')" id="file" style="cursor: pointer" class="glyphicon glyphicon-file">&nbsp;<span class="linksnone" id="linkgone_file">File</span></a>
 				  </div>
 				</div>
 	
@@ -144,7 +157,7 @@
 				  </tr>
 				  <tr>
 					  <td >
-					   <select class="form-control">
+					   <select class="form-control" data-toggle="tooltip" data-placement="bottom"  title="Select assigned user">
 					   <option selected>select user</option>
 						   <option>1</option>
 					  	 
@@ -159,8 +172,8 @@
 					  
 				  <div class="input-group">
 					  				  
-					  <input type="number" class="form-control" id="CountInput" min="1" max="20" placeholder"number of textbox">
-             			 <span id="addInput" onClick="add()" class="input-group-btn">	
+					  <input type="number" class="form-control" id="CountInput" min="1" max="20" data-toggle="tooltip" data-placement="bottom"  title="Number of Equipment">
+             			 <span id="addInput" onClick="add()" class="input-group-btn" >	
       				
         				<span id="dropbtn2" class="glyphicon glyphicon-plus"></span>
 					</div>
@@ -195,8 +208,8 @@
           	</tr>
           	
           		<tr>
-					<td ><div><input type="date" class="form-control" id='fromDate'></div></td>
-					<td ><div><input type="date" class="form-control" id='toDate'></div></td>
+					<td ><div><input type="date" class="form-control" id='fromDate' data-toggle="tooltip" data-placement="bottom"  title="Start date"></div></td>
+					<td ><div><input type="date" class="form-control" id='toDate' data-toggle="tooltip" data-placement="bottom"  title="End date"></div></td>
 				</tr>
           	
           	</table>
@@ -229,6 +242,11 @@
   
 <script>
 $(document).ready(function(){
+	
+	$('#formrotate').css("margin-top",'30px');
+	
+	
+	
     $('[data-toggle="tooltip"]').tooltip(); 
 });
 </script>
