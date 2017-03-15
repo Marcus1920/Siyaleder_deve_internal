@@ -18,7 +18,6 @@ use App\CaseSubType;
 
 
 
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -29,6 +28,17 @@ use App\CaseSubType;
 | and give it the controller to call when that URI is requested.
 |
 */
+
+/*
+|--------------------------------------------------------------------------
+| WORKFLOW ROUTING
+|--------------------------------------------------------------------------
+|
+*/
+
+
+Route::get("form","userreturnController@index");
+
 
 /*
 |--------------------------------------------------------------------------
@@ -47,10 +57,10 @@ Route::get('home', ['middleware' => 'auth', 'uses' => 'HomeController@index']);
 |
 */
 
-Route::get('form',function(){
+//Route::get('form',function(){
 
-  return view('form.workflow');
-});
+  //return view('form.workflow');
+//});
 
   Route::group(array('prefix' => 'api/v1'), function() {
 

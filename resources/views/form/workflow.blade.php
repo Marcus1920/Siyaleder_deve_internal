@@ -19,13 +19,13 @@
         <!-- Styles -->
 <style>
 	
-	#formrotate{
+	#insideform{
 		
-		margin-top: -500px;
+		margin-top: -90%;
 		  
-			-webkit-transition: margin-top 2s;
+			-webkit-transition: margin-top 1s;
 		 
-					transition: margin-top 2s;
+					transition: margin-top 1s;
 		
 	}
 #dropbtn {
@@ -96,9 +96,15 @@
    
     </head>
     <body> 
-    <div class="container">
+    <div class="container" id='multipleForm'>
  
-         <div class="modal-dialog modal-lg" id="formrotate">
+ <div align="center" style="margin-top: 15%; display: none" id="img_dv">
+ <img width="200" id="img" src="images/loading.gif">
+	 <h2>Loading...</h2>
+		</div>
+		<div id="insideform" >
+			
+			  <div class="modal-dialog modal-lg" id="formrotate">
   
   <!-- Trigger the modal with a button -->
  
@@ -123,12 +129,12 @@
           	<br>
           	
           	<div class="form-group">
-          	<label for="" class="control-label col-sm-1">step 1 </label>
+          	<label for="" class="control-label col-md-1">Step: 1</label>
           	
           	 <div class="col-sm-10" id="newTag">
           	 
           		<input type="text" id="datas" placeholder='Enter Text' class="form-control">
-          	
+				 <span class="text-danger" id="error_text"></span>
 			</div>
 				
 				<div id="dropdown">
@@ -156,12 +162,22 @@
 				  <th class="text-center" style="font-size: 16px;">Equipment</th>
 				  </tr>
 				  <tr>
-					  <td >
+					  <td><label class="control-label">Users</label>
 					   <select class="form-control" data-toggle="tooltip" data-placement="bottom"  title="Select assigned user">
-					   <option selected>select user</option>
-						   <option>1</option>
-					  	 
+					   
+
+
+					   <option selected value="empty">Select user</option>
+					   @foreach($all as $item)
+						   
+						 <option value={{$item->id}}>{{$item->name}}</option>
+
+					  	 @endforeach
 					  </select>
+
+
+ 					
+					  <span class="text-danger" id="error_users"></span>
 					  </td>
 					  
 					  
@@ -169,9 +185,9 @@
 					  <td style="width: 50%;" >
 					  
 					  <div class="col-sm-12">
-					  
+					  <label class="control-label">Used Equip</label>	
 				  <div class="input-group">
-					  				  
+					  			  
 					  <input type="number" class="form-control" id="CountInput" min="1" max="20" data-toggle="tooltip" data-placement="bottom"  title="Number of Equipment">
              			 <span id="addInput" onClick="add()" class="input-group-btn" >	
       				
@@ -179,7 +195,7 @@
 					</div>
       					</span>
       				
-    				
+    				<span class="text-danger" id="error_equip"></span>
 					  </div>
 					  
 					  
@@ -195,7 +211,7 @@
 				</div>
 			  </div>
           	
-          	<!---time--->
+          	
           	<div class="form-group">
          	<label for="" class="control-label col-sm-1">Time</label>
          	<div class="col-sm-10">
@@ -208,8 +224,14 @@
           	</tr>
           	
           		<tr>
-					<td ><div><input type="date" class="form-control" id='fromDate' data-toggle="tooltip" data-placement="bottom"  title="Start date"></div></td>
-					<td ><div><input type="date" class="form-control" id='toDate' data-toggle="tooltip" data-placement="bottom"  title="End date"></div></td>
+					<td>
+					<div>
+					<input type="date" class="form-control" id='fromDate' data-format="yyyy-MM-dd"  data-toggle="tooltip" data-placement="bottom"  title="Start date"></div>
+					<span class="text-danger" id="error_time"></span>
+					</td>
+					<td ><div><input type="date" class="form-control" id='toDate' data-format="yyyy-MM-dd"  data-toggle="tooltip" data-placement="bottom"  title="End date"></div>
+					<span class="text-danger" id="error_users" id="error_date"></span>
+					</td>
 				</tr>
           	
           	</table>
@@ -219,10 +241,14 @@
 			  </div>
           	
           	
-          	
           	<div class="form-group">
           	<div class="col-md-offset-1">
-          	<input type="submit" class="btn btn-info" value="Save">
+          	<input type="submit" class="btn btn-info" onClick="saves()" value="Save">
+          	
+          	<span class="col-md-offset-8">
+          	
+          	<div class="btn btn-primary" id="i" onClick="nextStep()">Next step</div>
+				</span>
 				</div>  
          	</div>
           	
@@ -236,14 +262,18 @@
       </div>
       
     </div>
-  
 		</div>
+
+
+       
+  
+	</div>
 
   
 <script>
 $(document).ready(function(){
 	
-	$('#formrotate').css("margin-top",'30px');
+	$('#insideform').css("margin-top",'4%');
 	
 	
 	
